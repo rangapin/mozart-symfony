@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Expense index{% endblock %}
+
+{% block body %}
+    <h1>Expense index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.id }}</td>
+                <td>{{ expense.expName }}</td>
+                <td>{{ expense.expAmount }}</td>
+                <td>{{ expense.expCreatedAt ? expense.expCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ expense.extCat }}</td>
+                <td>
+                    <a href="{{ path('expense_show', {'id': expense.id}) }}">show</a>
+                    <a href="{{ path('expense_edit', {'id': expense.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('expense_new') }}">Create new</a>
+{% endblock %}

@@ -37,6 +37,11 @@ class Expense
      */
     private $ext_cat;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $payment_method;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Expense
     public function setExtCat(string $ext_cat): self
     {
         $this->ext_cat = $ext_cat;
+
+        return $this;
+    }
+
+    public function getPaymentMethod(): ?string
+    {
+        return $this->payment_method;
+    }
+
+    public function setPaymentMethod(string $payment_method): self
+    {
+        $this->payment_method = $payment_method;
 
         return $this;
     }
